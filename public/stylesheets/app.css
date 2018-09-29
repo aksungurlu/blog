@@ -1,0 +1,13 @@
+#horn {
+  font-size: 2em;
+}
+
+.ui.container.segment {
+  margin-top: 5em;
+}
+
+.date{
+  width: inherit;
+  text-align: right;
+  color: grey;
+}
