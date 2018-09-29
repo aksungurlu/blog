@@ -1,18 +1,24 @@
 <% include partials/header %>
 
-<h1>Blog Page</h1>
-<a href="/">Back</a>
-
-<div class="container">
-  <% blogs.forEach((blog) => { %>
-    <div class="blog-item">
-      <h3><%= blog.title %></h3>
-      <img src="<%= blog.image %>" alt="blog entry image">
-      <p><%= blog.body.substring(0,50) %>...</p>
-      <p><em><%= blog.date.toDateString() %></em></p>
-      <a href="/blog/<%=blog.id%>">Details...</a>
+<div class="ui main container">
+  <div class="ui header huge">
+    Blog
+  </div>
+  <div class="ui relaxed divided list">
+    <% blogs.forEach((blog) => { %>
+      <div class="item">
+        <img class="ui small rounded image" src="<%= blog.image %>" alt="blog entry image">
+        <div class="content">
+          <a class="header" href="/blog/<%=blog.id%>"><%= blog.title %></a>
+        <div class="description"><%- blog.body.substring(0,100) %>...</div>
+        <a href="/blog/<%=blog.id%>" class="ui small blue button">Details...</a>
+        <p><em><%= blog.date.toDateString() %></em></p>
+      </div>
     </div>
-  <% }); %>
+    <% }); %>
+
+  </div>
+
 </div>
 
 <% include partials/footer %>
