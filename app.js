@@ -1,12 +1,14 @@
 //INIT SERVER VARS
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose");
+var express         = require("express"),
+    app             = express(),
+    methodOverride  = require("method-override"),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 mongoose.connect("mongodb://localhost/blog");
 
@@ -72,6 +74,16 @@ app.get("/blog/:id/edit", (req, res) => {
       console.log(err);
     } else{
       res.render("edit",{blog: foundBlog});
+    }
+  });
+});
+
+app.put("/blog/:id", (req, res) => {
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedPost) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.redirect("/blog/"+req.params.id);
     }
   });
 });
