@@ -66,6 +66,16 @@ app.get("/blog/:id", (req, res) => {
   });
 });
 
+app.get("/blog/:id/edit", (req, res) => {
+  Blog.findById(req.params.id, (err, foundBlog) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.render("edit",{blog: foundBlog});
+    }
+  });
+});
+
 //LISTEN
 app.listen(3000, () => {
   console.log("Server started!");
