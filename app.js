@@ -88,6 +88,16 @@ app.put("/blog/:id", (req, res) => {
   });
 });
 
+app.delete("/blog/:id", (req, res) => {
+  Blog.findByIdAndRemove(req.params.id, (err) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.redirect("/blog");
+    }
+  });
+});
+
 //LISTEN
 app.listen(3000, () => {
   console.log("Server started!");

@@ -11,3 +11,7 @@
   text-align: right;
   color: grey;
 }
+
+#delete{
+  display: inline;
+}

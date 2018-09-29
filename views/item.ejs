@@ -14,6 +14,10 @@
   <div class="ui container date">
     <em><%=blog.date.toDateString()%></em>
   </div>
+  <a href="/blog/<%= blog.id %>/edit" class="ui orange basic button">Edit</a>
+  <form id="delete" class="ui form" action="/blog/<%= blog.id %>?_method=DELETE" method="post">
+    <button class="ui red basic button">Delete</button>
+  </form>
 </div>
 
 <% include partials/footer %>
